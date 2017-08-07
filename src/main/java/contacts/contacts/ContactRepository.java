@@ -28,12 +28,12 @@ public class ContactRepository {
     }
 
     public List<Contact> findAll() {
-        return jdbc.query("select id, firstname, lastname, phoneNumber, emailAddress"
-                + "from contacts order by lastName",
+        return jdbc.query("select *"
+                + " from contacts order by lastName",
                 new RowMapper<Contact>() {
             public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Contact contact = new Contact();
-                contact.setId(rs.getLong(1));
+                contact.setId(rs.getString(1));
                 contact.setFirstName(rs.getString(2));
                 contact.setLastName(rs.getString(3));
                 contact.setPhoneNumber(rs.getString(4));
